@@ -1,0 +1,45 @@
+@domain = http://localhost:3000/
+@jwt = eyJhbGciOiJIUzI1NiJ9.eyJ1c2VyX2lkIjoxMDMsImV4cCI6MTY0MzgxMTA2OH0.PBmXI-aRe_0JbX6WtChqk-MinDjnS7iIfZixULrZ6SI
+#Homer
+
+### Users create (signup)
+POST {{ domain }}/users
+Content-Type: application/json
+
+{
+  "name": "Marge Simpson",
+  "email": "marge@gmail.com",
+  "password": "password",
+  "password_confirmation": "password"
+}
+
+###
+### Sessions create (login)
+POST {{ domain }}/sessions
+Content-Type: application/json
+
+{
+  "email": "homer@gmail.com",
+  "password": "password"
+}
+
+###
+#Clowns Index
+
+GET {{ domain }}/clowns
+
+###
+#Clowns Show
+
+GET {{ domain }}/clowns/3
+Authorization: Bearer {{ jwt }}
+
+###
+#Bookings Create
+POST {{ domain }}/bookings
+Content-Type: application/json
+Authorization: Bearer {{ jwt }}
+
+{
+  "clown_id": 11
+}
